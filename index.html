@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>헤메캐치 (Heme Catch) - 서울 상위 100선 배우 헤어&메이크업 맵</title>
+    <title>HEME CATCH - 서울 상위 100선 배우 헤어&메이크업 맵</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#4f46e5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="헤메캐치">
+    <meta name="apple-mobile-web-app-title" content="HEME CATCH">
 
     <style>
         body {
@@ -25,18 +25,16 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen pb-16">
 
-    <!-- Sticky Top Header -->
+    <!-- Sticky Top Header (Cast-Catch Style: Larger English Logo without Badge) -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
         <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-black text-sm shadow-md shadow-indigo-200">
                     💄
                 </div>
-                <div>
-                    <h1 class="text-base font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
-                        헤메캐치 <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-100">배우전담</span>
-                    </h1>
-                </div>
+                <h1 class="text-lg sm:text-xl font-black tracking-tight text-slate-900">
+                    HEME CATCH
+                </h1>
             </div>
             <button onclick="shareApp()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition" title="공유하기">
                 <i class="fa-solid fa-arrow-up-from-bracket text-xs"></i>
@@ -47,25 +45,25 @@
     <!-- App Container -->
     <main class="max-w-xl mx-auto px-4 pt-4 space-y-4">
 
-        <!-- Top HOT Alert Bar -->
-        <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 text-white rounded-xl p-3 flex items-center justify-between text-xs shadow-md transition duration-150 group block">
+        <!-- Top HOT Alert Bar (With Instagram Link & '바로가기') -->
+        <a href="https://www.instagram.com/studio_johnmaking?igsh=ZnR2NHV5ZWg3N2k1" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 text-white rounded-xl p-3 flex items-center justify-between text-xs shadow-md transition duration-150 group block">
             <div class="flex items-center gap-2">
                 <span class="px-1.5 py-0.5 rounded bg-rose-500 text-[10px] font-bold tracking-wider animate-pulse">HOT</span>
                 <span class="font-bold truncate group-hover:text-amber-300 transition">실패없는 프로필촬영</span>
             </div>
             <div class="flex items-center gap-1 text-slate-300 text-[11px] font-semibold shrink-0 group-hover:text-white transition">
-                <span>꿀팁 보러가기</span>
+                <span>바로가기</span>
                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
             </div>
         </a>
 
-        <!-- Main Hero Card -->
+        <!-- Main Hero Card (Updated Copy) -->
         <div class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 text-white rounded-2xl p-5 sm:p-6 shadow-lg shadow-indigo-100 relative overflow-hidden space-y-2">
             <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm text-[11px] font-semibold text-indigo-100">
-                <span>✨</span> <span>배우를 위한 원스톱 뷰티 디렉토리</span>
+                <span>✨</span> <span>존메이킹도 항상 배우님을 응원합니다!</span>
             </div>
             <h2 class="text-lg sm:text-xl font-extrabold leading-tight">
-                헤메캐치가 배우님들의<br>빛나는 촬영과 오디션을 응원합니다!
+                헤메캐치가 배우님들의 빛나는 순간을 응원합니다
             </h2>
             <p class="text-xs text-indigo-100/90 pt-1 leading-relaxed">
                 서울 상위 100대 샵 실시간 검색, 네이버 지도 길찾기, 예약, 인스타 화보 확인까지 한 번에!
@@ -78,12 +76,12 @@
             <input 
                 type="text" 
                 id="searchInput" 
-                placeholder="샵 이름, 지역, 키워드(예: 여배우, 새벽, 남성, 바프 등) 검색..."
+                placeholder="샵 이름, 지역, 키워드(예: 여배우, 새벽, 바프 등) 검색..."
                 class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 shadow-sm transition placeholder-slate-400"
             >
         </div>
 
-        <!-- Filter 1: Region Pills (2줄 자동 줄바꿈) -->
+        <!-- Filter 1: Region Pills (2-Row Auto Wrap) -->
         <div class="space-y-1.5">
             <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider px-1">
                 <span>📍 지역별 카테고리 (100선)</span>
@@ -97,7 +95,7 @@
             </div>
         </div>
 
-        <!-- Filter 2: Purpose & Concept Pills -->
+        <!-- Filter 2: Purpose & Concept Pills (Removed '남성 그루밍') -->
         <div class="space-y-1.5 pt-1">
             <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider px-1">
                 <span>🎯 촬영 목적 / 배우 맞춤 컨셉</span>
@@ -108,7 +106,6 @@
                 <button data-cat="오디션" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🎬 오디션·미팅</button>
                 <button data-cat="영화" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🎥 영화·드라마</button>
                 <button data-cat="무대" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🎭 무대·뮤지컬</button>
-                <button data-cat="남성그루밍" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">👔 남성 그루밍</button>
                 <button data-cat="새벽" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🌅 새벽 오픈</button>
             </div>
         </div>
@@ -135,7 +132,7 @@
             <p class="text-xs text-slate-400">다른 지역이나 검색어를 선택해 보세요.</p>
         </div>
 
-        <!-- Studio Johnmaking Footer Section -->
+        <!-- Studio Johnmaking Footer Section (Exact User Kakao & IG Links) -->
         <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl p-5 border border-slate-800 shadow-xl space-y-3.5 mt-6">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
@@ -154,9 +151,9 @@
 
             <!-- Studio Johnmaking Action Buttons -->
             <div class="grid grid-cols-2 gap-2.5 pt-1">
-                <!-- Kakao Chat Button -->
+                <!-- Kakao Open Chat Button -->
                 <a 
-                    href="https://pf.kakao.com/" 
+                    href="https://pf.kakao.com/_xcfxkxnd/chat" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     class="py-2.5 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD835] text-[#3C1E1E] font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition active:scale-[0.98]"
@@ -165,9 +162,9 @@
                     <span>카카오톡 상담 ↗</span>
                 </a>
 
-                <!-- Instagram Button -->
+                <!-- Studio Johnmaking Instagram Button -->
                 <a 
-                    href="https://www.instagram.com/" 
+                    href="https://www.instagram.com/studio_johnmaking?igsh=ZnR2NHV5ZWg3N2k1" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     class="py-2.5 px-3 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 hover:opacity-95 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition active:scale-[0.98]"
@@ -182,7 +179,7 @@
 
     <!-- Footer -->
     <footer class="mt-12 border-t border-slate-200/80 bg-white py-8 text-center text-xs text-slate-400 space-y-1">
-        <p class="font-bold text-slate-600">헤메캐치 (Heme Catch) &bull; ACTOR BEAUTY 100</p>
+        <p class="font-bold text-slate-600">HEME CATCH &bull; ACTOR BEAUTY 100</p>
         <p class="text-[11px]">배우 및 연기 예술인들의 촬영·오디션 편의를 위해 제작되었습니다.</p>
         <p class="text-[10px] text-slate-300 pt-2">&copy; 2026 Heme Catch. All Rights Reserved.</p>
     </footer>
@@ -307,7 +304,7 @@
         function shareApp() {
             if (navigator.share) {
                 navigator.share({
-                    title: '헤메캐치 - 서울 상위 100선 배우 헤어&메이크업 맵',
+                    title: 'HEME CATCH - 서울 상위 100선 배우 헤어&메이크업 맵',
                     text: '배우들을 위한 서울 상위 100대 헤어·메이크업 샵 실시간 지도 & 예약',
                     url: window.location.href,
                 }).catch(() => {});
