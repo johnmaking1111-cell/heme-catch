@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>헤메캐치 (Heme Catch) - 배우 전담 헤어&메이크업 맵</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="헤메캐치">
+
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #F8FAFC;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-16">
+
+    <!-- Sticky Top Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-black text-sm shadow-md shadow-indigo-200">
+                    💄
+                </div>
+                <div>
+                    <h1 class="text-base font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
+                        헤메캐치 <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-100">배우전담</span>
+                    </h1>
+                </div>
+            </div>
+            <button onclick="shareApp()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition" title="공유하기">
+                <i class="fa-solid fa-arrow-up-from-bracket text-xs"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- App Container -->
+    <main class="max-w-xl mx-auto px-4 pt-4 space-y-4">
+
+        <!-- Top HOT Alert Bar -->
+        <div class="bg-slate-900 text-white rounded-xl p-3 flex items-center justify-between text-xs shadow-md">
+            <div class="flex items-center gap-2">
+                <span class="px-1.5 py-0.5 rounded bg-rose-500 text-[10px] font-bold tracking-wider animate-pulse">HOT</span>
+                <span class="font-medium truncate">오디션 & 프로필 촬영 전담 헤메 샵 총정리</span>
+            </div>
+            <span class="text-slate-400 text-[11px] font-semibold shrink-0">서울 30선 🔥</span>
+        </div>
+
+        <!-- Main Hero Card -->
+        <div class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 text-white rounded-2xl p-5 sm:p-6 shadow-lg shadow-indigo-100 relative overflow-hidden space-y-2">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm text-[11px] font-semibold text-indigo-100">
+                <span>✨</span> <span>배우를 위한 원스톱 뷰티 디렉토리</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-extrabold leading-tight">
+                헤메캐치가 배우님들의<br>빛나는 촬영과 오디션을 응원합니다!
+            </h2>
+            <p class="text-xs text-indigo-100/90 pt-1 leading-relaxed">
+                지역별 샵 검색부터 네이버 지도 길찾기, 실시간 예약, 포트폴리오 화보 확인까지 한 번에!
+            </p>
+        </div>
+
+        <!-- Search Input Bar -->
+        <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="샵 이름, 지역, 키워드(예: 여배우, 새벽, 남성 등) 검색..."
+                class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 shadow-sm transition placeholder-slate-400"
+            >
+        </div>
+
+        <!-- Filter 1: Region Pills -->
+        <div class="space-y-1.5">
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between px-1">
+                <span>📍 지역별 카테고리</span>
+                <span class="text-[10px] text-indigo-600 font-medium">좌우로 스크롤 가능</span>
+            </div>
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5" id="regionFilters">
+                <button data-region="all" class="region-btn active px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-indigo-600 text-white shadow-sm shadow-indigo-200 transition">전체 (30)</button>
+                <button data-region="청담·압구정" class="region-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">청담·압구정 (12)</button>
+                <button data-region="강남·신사" class="region-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">강남·신사 (10)</button>
+                <button data-region="홍대·합정" class="region-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">홍대·합정 (5)</button>
+                <button data-region="대학로·종로·성수" class="region-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">대학로·종로·성수 (3)</button>
+            </div>
+        </div>
+
+        <!-- Filter 2: Purpose & Concept Pills -->
+        <div class="space-y-1.5 pt-1">
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider px-1">
+                <span>🎯 촬영 목적 / 배우 맞춤 컨셉</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5" id="categoryFilters">
+                <button data-cat="all" class="cat-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">전체 목적</button>
+                <button data-cat="프로필" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">📸 배우 프로필</button>
+                <button data-cat="오디션" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🎬 오디션·미팅</button>
+                <button data-cat="영화" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🎥 영화·드라마</button>
+                <button data-cat="무대" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🎭 무대·뮤지컬</button>
+                <button data-cat="남성그루밍" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">👔 남성 그루밍</button>
+                <button data-cat="새벽" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🌅 새벽 오픈</button>
+            </div>
+        </div>
+
+        <!-- Results Status Bar -->
+        <div class="flex items-center justify-between text-xs text-slate-500 px-1 pt-2">
+            <div class="font-bold text-slate-800">
+                검증된 서울 헤어·메이크업 샵 총 <span id="shopCount" class="text-indigo-600 text-sm">30</span>개
+            </div>
+            <div class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                <i class="fa-solid fa-circle-check"></i> 네이버 플레이스 상위 엄선
+            </div>
+        </div>
+
+        <!-- Shop Cards Stack -->
+        <div id="shopGrid" class="space-y-3.5"></div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden py-16 text-center space-y-2 bg-white rounded-2xl border border-slate-200 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-slate-100 mx-auto flex items-center justify-center text-slate-400">
+                <i class="fa-solid fa-magnifying-glass text-lg"></i>
+            </div>
+            <p class="text-sm font-bold text-slate-700">조건에 맞는 헤어·메이크업 샵이 없습니다.</p>
+            <p class="text-xs text-slate-400">다른 지역이나 검색어를 선택해 보세요.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-slate-200/80 bg-white py-8 text-center text-xs text-slate-400 space-y-1">
+        <p class="font-bold text-slate-600">헤메캐치 (Heme Catch) &bull; ACTOR BEAUTY</p>
+        <p class="text-[11px]">배우 및 연기 예술인들의 촬영·오디션 편의를 위해 제작되었습니다.</p>
+        <p class="text-[10px] text-slate-300 pt-2">&copy; 2026 Heme Catch. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        const SHOPS = [
+            {"id": 1, "name": "정샘물 인스피레이션 (청담)", "region": "청담·압구정", "category": "프로필·영화", "sub_badge": "연예인 전담 샵", "color": "from-blue-500 to-indigo-600", "desc": "투명 메이크업의 원조. 맑고 결점 없는 베이스와 본연의 장점을 극대화하는 배우·웨딩 메이크업의 최고 명가.", "tags": ["#투명메이크업", "#피부표현", "#고급음영", "#배우단골"], "address": "서울 강남구 압구정로79길 19", "booking_url": "https://map.naver.com/p/search/정샘물 인스피레이션 청담", "map_query": "정샘물 인스피레이션 청담", "instagram": "https://www.instagram.com/jsmbeauty_"},
+            {"id": 2, "name": "제니하우스 (청담힐 / 프리모)", "region": "청담·압구정", "category": "프로필·오디션", "sub_badge": "여배우 1위 살롱", "color": "from-purple-500 to-pink-500", "desc": "수많은 톱스타와 여배우들이 찾는 트렌디하고 세련된 헤어·메이크업 살롱. 이목구비가 또렷한 조명 메이크업 강점.", "tags": ["#여배우메이크업", "#트렌디헤어", "#또렷한눈매", "#새벽오픈"], "address": "서울 강남구 선릉로146길 56", "booking_url": "https://www.jennyhouse.co.kr/", "map_query": "제니하우스 청담힐", "instagram": "https://www.instagram.com/jennyhousepr"},
+            {"id": 3, "name": "순수 (Soonsoo 청담본점)", "region": "청담·압구정", "category": "프로필·오디션", "sub_badge": "과즙·프로필 명소", "color": "from-amber-500 to-orange-500", "desc": "화사하고 생기 있는 피부 표현과 과하지 않은 입체감으로 카메라 촬영 및 프로필 화보에 최적화.", "tags": ["#화사한톤", "#과즙메이크업", "#자연스러운헤어", "#프로필화보"], "address": "서울 강남구 도산대로61길 4", "booking_url": "https://map.naver.com/p/search/순수 청담본점", "map_query": "순수 청담본점", "instagram": "https://www.instagram.com/soonsoobeauty"},
+            {"id": 4, "name": "위위아뜰리에 (Ouious Atelier)", "region": "청담·압구정", "category": "오디션·아이돌", "sub_badge": "아이돌 메이크업 성지", "color": "from-rose-500 to-red-500", "desc": "아이돌 및 영(Young) 배우 메이크업의 대표 샵. 한 올 한 올 살아있는 속눈썹과 감각적인 글리터 포인트 연출.", "tags": ["#아이돌메이크업", "#속눈썹디테일", "#글리터", "#영배우추천"], "address": "서울 강남구 도산대로55길 26", "booking_url": "https://map.naver.com/p/search/위위아뜰리에", "map_query": "위위아뜰리에", "instagram": "https://www.instagram.com/ouioui_atelier"},
+            {"id": 5, "name": "빗앤붓 (Bit&Boot)", "region": "청담·압구정", "category": "남성그루밍·영화", "sub_badge": "남성배우 & 아이돌", "color": "from-slate-700 to-slate-900", "desc": "K-POP 아티스트 및 남/녀 배우 헤어메이크업 전문. 트렌디한 헤어 디자인과 세련된 맞춤 그루밍.", "tags": ["#남성배우추천", "#아이돌헤메", "#트렌디컷", "#감각적스타일"], "address": "서울 강남구 압구정로79길 37-6", "booking_url": "https://map.naver.com/p/search/빗앤붓", "map_query": "빗앤붓", "instagram": "https://www.instagram.com/bit.boot"},
+            {"id": 6, "name": "꼼나나 (Comme Nana 청담본점)", "region": "청담·압구정", "category": "프로필·오디션", "sub_badge": "감성 분위기 1등", "color": "from-teal-500 to-emerald-600", "desc": "감각적인 분위기와 세련된 음영 메이크업으로 배우·모델 프로필 사진에 높은 선호도를 자랑하는 살롱.", "tags": ["#소녀감성", "#세련된음영", "#내추럴헤어", "#분위기맛집"], "address": "서울 강남구 언주로168길 30", "booking_url": "https://map.naver.com/p/search/꼼나나 청담본점", "map_query": "꼼나나 청담본점", "instagram": "https://www.instagram.com/commenana_official"},
+            {"id": 7, "name": "애브뉴준오 (Avenue Juno)", "region": "청담·압구정", "category": "프로필·영화", "sub_badge": "베이스 지속력 최고", "color": "from-cyan-600 to-blue-700", "desc": "장시간 지속되는 탄탄한 베이스와 기품 있는 스타일링으로 촬영 및 격식 행사에 탁월한 만족도 제공.", "tags": ["#탄탄한베이스", "#오랜지속력", "#프리미엄살롱", "#고급무드"], "address": "서울 강남구 삼성로 728", "booking_url": "https://map.naver.com/p/search/애브뉴준오", "map_query": "애브뉴준오", "instagram": "https://www.instagram.com/avenue_juno"},
+            {"id": 8, "name": "알루 (ALUU 청담점)", "region": "청담·압구정", "category": "프로필·영화", "sub_badge": "윤곽 보정 & 볼륨", "color": "from-violet-600 to-indigo-700", "desc": "카메라 앵글에 맞춰 이목구비를 또렷하게 살려주는 윤곽 메이크업과 풍성한 헤어 볼륨 연출.", "tags": ["#윤곽보정", "#헤어볼륨", "#방송전담", "#배우단골"], "address": "서울 강남구 도산대로67길 19", "booking_url": "https://map.naver.com/p/search/알루 청담점", "map_query": "알루 청담점", "instagram": "https://www.instagram.com/aluu_2015"},
+            {"id": 9, "name": "요닝 (Yoning)", "region": "청담·압구정", "category": "프로필·오디션", "sub_badge": "화사한 입체감", "color": "from-fuchsia-500 to-rose-600", "desc": "조명 아래 화사하게 빛나는 입체 메이크업과 트렌디한 헤어 텍스처로 사진이 잘 나오는 인기 샵.", "tags": ["#화사한입체감", "#물결웨이브", "#인기살롱", "#사진맛집"], "address": "서울 강남구 압구정로72길 14", "booking_url": "https://map.naver.com/p/search/요닝", "map_query": "요닝 청담", "instagram": "https://www.instagram.com/yoning_official"},
+            {"id": 10, "name": "멥시 (Mepci)", "region": "청담·압구정", "category": "오디션·아이돌", "sub_badge": "클로즈업 최적화", "color": "from-emerald-500 to-teal-700", "desc": "맑은 톤업 베이스와 디테일한 아이 메이크업으로 카메라 클로즈업 샷에 최적화된 아이돌/배우 샵.", "tags": ["#눈매교정", "#투명피부", "#MZ선호", "#아이돌배우"], "address": "서울 강남구 도산대로67길 14", "booking_url": "https://map.naver.com/p/search/멥시 청담", "map_query": "멥시", "instagram": "https://www.instagram.com/mepci"},
+            {"id": 11, "name": "김청경 헤어페이스", "region": "청담·압구정", "category": "프로필·영화", "sub_badge": "전통 뷰티 명가", "color": "from-amber-600 to-yellow-600", "desc": "은은한 광채 피부와 세월이 흘러도 세련된 클래식 무드의 대한민국 1세대 연기자 전담 살롱.", "tags": ["#우아한광채", "#전통있는샵", "#기품있는스타일", "#여배우단골"], "address": "서울 강남구 도산대로81길 47", "booking_url": "https://map.naver.com/p/search/김청경헤어페이스", "map_query": "김청경헤어페이스", "instagram": "https://www.instagram.com/kimchungkyung_hairface"},
+            {"id": 12, "name": "보보리스 (Boboris)", "region": "청담·압구정", "category": "프로필·영화", "sub_badge": "정극·전문직 인상", "color": "from-blue-600 to-slate-700", "desc": "과장되지 않은 정갈한 톤 정리와 단정한 스타일링으로 전문직/정극 연기 프로필에 추천하는 샵.", "tags": ["#단정한피부톤", "#클래식헤어", "#신뢰감있는인상", "#방송출연"], "address": "서울 강남구 언주로154길 14", "booking_url": "https://map.naver.com/p/search/보보리스", "map_query": "보보리스", "instagram": "https://www.instagram.com/boboris_official"},
+            {"id": 13, "name": "디데이 헤어메이크업 (강남본점)", "region": "강남·신사", "category": "프로필·오디션", "sub_badge": "1:1 맞춤 컨설팅", "color": "from-indigo-500 to-purple-600", "desc": "배우·모델 프로필 사진과 오디션 미팅에 특화된 1:1 맞춤 헤어 메이크업으로 네이버 평점 최상위.", "tags": ["#1:1맞춤컨설팅", "#사진촬영특화", "#스피드메이크업", "#평점우수"], "address": "서울 강남구 강남대로 382", "booking_url": "https://map.naver.com/p/search/디데이 헤어메이크업 강남", "map_query": "디데이 헤어메이크업 강남본점", "instagram": "https://www.instagram.com/d_day_makeup"},
+            {"id": 14, "name": "코코미카 (Cocomika)", "region": "강남·신사", "category": "프로필·오디션", "sub_badge": "가성비 & 감각적", "color": "from-pink-500 to-rose-500", "desc": "합리적인 가격과 감각적인 스타일링으로 신인 배우 및 지망생 프로필 헤메로 인기 높은 강남 샵.", "tags": ["#가성비우수", "#산뜻한무드", "#스냅촬영", "#네이버예약"], "address": "서울 강남구 도산대로 211", "booking_url": "https://map.naver.com/p/search/코코미카", "map_query": "코코미카", "instagram": "https://www.instagram.com/cocomika_official"},
+            {"id": 15, "name": "오블리쥬 (Oblige)", "region": "강남·신사", "category": "프로필·영화", "sub_badge": "화보 & 룩북 전문", "color": "from-sky-500 to-blue-600", "desc": "스튜디오 플래시 조명 아래에서 번들거림 없이 깔끔하게 매칭되는 룩북·프로필 화보 전문 살롱.", "tags": ["#조명최적화", "#화보스타일", "#룩북촬영", "#배우프로필"], "address": "서울 강남구 논현로151길 55", "booking_url": "https://map.naver.com/p/search/오블리쥬", "map_query": "오블리쥬", "instagram": "https://www.instagram.com/oblige_official"},
+            {"id": 16, "name": "골드로즈 메이크업 (강남역점)", "region": "강남·신사", "category": "오디션·새벽", "sub_badge": "새벽 조기 오픈", "color": "from-amber-500 to-yellow-600", "desc": "이른 아침 오디션 및 콜타임을 위한 조기 예약 지원. 또렷한 인상을 만드는 실전형 헤메 전문.", "tags": ["#새벽영업", "#면접오디션", "#빠른진행", "#강남역초역세권"], "address": "서울 서초구 강남대로 381", "booking_url": "https://map.naver.com/p/search/골드로즈 메이크업 강남", "map_query": "골드로즈 메이크업 강남", "instagram": "https://www.instagram.com/goldrose_makeup"},
+            {"id": 17, "name": "모아위 (MOAI)", "region": "강남·신사", "category": "프로필·오디션", "sub_badge": "감성 무드 & 잔머리", "color": "from-orange-500 to-amber-600", "desc": "내추럴하면서도 분위기 있는 헤어 결 연출과 얼굴형에 맞춘 은은한 컨투어링으로 감성 프로필 추천.", "tags": ["#잔머리연출", "#자연스러운음영", "#감성무드", "#감각적헤어"], "address": "서울 강남구 도산대로37길 34", "booking_url": "https://map.naver.com/p/search/모아위", "map_query": "모아위", "instagram": "https://www.instagram.com/moai_official"},
+            {"id": 18, "name": "살롱바다 (Salon Bada)", "region": "강남·신사", "category": "프로필·남성그루밍", "sub_badge": "영상 & 카메라 테스트", "color": "from-blue-500 to-cyan-500", "desc": "영상 및 오디션 카메라 테스트에 특화된 1:1 컨설팅 기반 헤어메이크업 살롱.", "tags": ["#1:1전담", "#영상촬영특화", "#유튜브방송", "#퍼스널스타일링"], "address": "서울 강남구 도산대로24길 23", "booking_url": "https://map.naver.com/p/search/살롱바다", "map_query": "살롱바다", "instagram": "https://www.instagram.com/salon_bada"},
+            {"id": 19, "name": "에이컨셉 (Aconcept 강남점)", "region": "강남·신사", "category": "프로필·오디션", "sub_badge": "바디프로필 & 강렬함", "color": "from-red-500 to-rose-600", "desc": "화보 및 컨셉 프로필 촬영에서 캐릭터의 분위기와 카리스마를 극대화하는 맞춤 스타일링.", "tags": ["#바디프로필", "#강렬한인상", "#입체메이크업", "#컨셉촬영"], "address": "서울 강남구 도산대로 164", "booking_url": "https://map.naver.com/p/search/에이컨셉 강남점", "map_query": "에이컨셉 강남점", "instagram": "https://www.instagram.com/aconcept_kr"},
+            {"id": 20, "name": "살롱드뮤사이 (신사본점)", "region": "강남·신사", "category": "프로필·오디션", "sub_badge": "헤어시술 동시진행", "color": "from-purple-600 to-violet-700", "desc": "헤어 컷/펌 시술과 메이크업을 함께 진행하기 용이한 신사동 대표 프리미엄 토탈 살롱.", "tags": ["#헤어컷펌병행", "#트렌디메이크업", "#신사역근처", "#넓은공간"], "address": "서울 강남구 신사동 651-3", "booking_url": "https://map.naver.com/p/search/살롱드뮤사이 신사본점", "map_query": "살롱드뮤사이 신사본점", "instagram": "https://www.instagram.com/salondemusai"},
+            {"id": 21, "name": "고센뷰티 (도산본점)", "region": "강남·신사", "category": "영화·출장", "sub_badge": "출장 & 헤어변형", "color": "from-emerald-600 to-green-700", "desc": "촬영 현장 헤어 변형 출장 서비스와 조기 촬영 고객을 위한 얼리 예약 시스템 완비.", "tags": ["#출장헤어변형", "#대규모살롱", "#새벽예약가능", "#스킨케어"], "address": "서울 강남구 언주로168길 6-9", "booking_url": "https://map.naver.com/p/search/고센뷰티 도산본점", "map_query": "고센뷰티 도산본점", "instagram": "https://www.instagram.com/goshenbeauty"},
+            {"id": 22, "name": "케이트뷰티 (Kate Beauty 강남)", "region": "강남·신사", "category": "프로필·오디션", "sub_badge": "30년 베테랑 원장", "color": "from-rose-500 to-pink-600", "desc": "청담 경력 30년 원장님의 디테일한 1:1 이미지 메이킹으로 오디션 합격률을 높이는 헤메.", "tags": ["#베테랑원장", "#1:1뷰티컨설팅", "#밀착케어", "#자연스러운헤메"], "address": "서울 강남구 논현로 503", "booking_url": "https://map.naver.com/p/search/케이트뷰티 강남", "map_query": "케이트뷰티 강남", "instagram": "https://www.instagram.com/kate_beauty_"},
+            {"id": 23, "name": "이미 헤어메이크업 (iimi 홍대점)", "region": "홍대·합정", "category": "오디션·아이돌", "sub_badge": "청담 출신 홍대 상륙", "color": "from-violet-500 to-purple-600", "desc": "청담동 15년 이상 경력 원장진이 홍대에서 선보이는 아이돌 & 배우 프로필 스타일링.", "tags": ["#청담출신원장", "#아이돌스타일", "#홍대입구역5분", "#프로필헤메"], "address": "서울 마포구 동교로 201", "booking_url": "https://map.naver.com/p/search/이미 헤어메이크업 홍대", "map_query": "이미 헤어메이크업 홍대", "instagram": "https://www.instagram.com/iimi_hairmakeup"},
+            {"id": 24, "name": "쇼메이크업 (Show Makeup 홍대점)", "region": "홍대·합정", "category": "오디션·무대", "sub_badge": "오디션 & 바프 1위", "color": "from-amber-500 to-red-600", "desc": "배우 오디션, 바디프로필, 공연 예술인을 위한 또렷한 입체 윤곽 메이크업의 홍대 대표 명소.", "tags": ["#오디션전문", "#바디프로필", "#무대분장", "#홍대대표샵"], "address": "서울 마포구 양화로 156", "booking_url": "https://map.naver.com/p/search/쇼메이크업 홍대", "map_query": "쇼메이크업 홍대", "instagram": "https://www.instagram.com/show_makeup"},
+            {"id": 25, "name": "모이메이크업 (Moi Makeup)", "region": "홍대·합정", "category": "프로필·스냅", "sub_badge": "퍼스널 컬러 맞춤", "color": "from-teal-500 to-cyan-600", "desc": "본인의 톤에 가장 잘 어울리는 색조 배합과 내추럴한 헤어 결감으로 스냅 촬영에 최적화.", "tags": ["#퍼스널컬러", "#내추럴감성", "#합정역근처", "#스냅촬영특화"], "address": "서울 마포구 독막로3길 24", "booking_url": "https://map.naver.com/p/search/모이메이크업 합정", "map_query": "모이메이크업", "instagram": "https://www.instagram.com/moi_makeup"},
+            {"id": 26, "name": "모디쉬 (Modish)", "region": "홍대·합정", "category": "남성그루밍·프로필", "sub_badge": "남성 배우 추천", "color": "from-slate-600 to-slate-800", "desc": "남성 배우 프로필 및 스튜디오 스냅 촬영 연계로 깔끔하고 담백한 그루밍 메이크업 제공.", "tags": ["#남성배우추천", "#스튜디오연계", "#깔끔한톤정리", "#상수역근처"], "address": "서울 마포구 와우산로 39-1", "booking_url": "https://map.naver.com/p/search/모디쉬 상수", "map_query": "모디쉬 메이크업", "instagram": "https://www.instagram.com/modish_makeup"},
+            {"id": 27, "name": "라투메이크업 (La Too Makeup)", "region": "홍대·합정", "category": "오디션·실속", "sub_badge": "실속 가성비 최고", "color": "from-pink-500 to-rose-600", "desc": "신촌·홍대 인근에서 합리적인 가격에 완성도 높은 프로필·오디션 메이크업을 제공하는 실속 샵.", "tags": ["#가성비최고", "#실속형헤메", "#신촌홍대", "#재방문율높음"], "address": "서울 서대문구 신촌로 73", "booking_url": "https://map.naver.com/p/search/라투메이크업", "map_query": "라투메이크업", "instagram": "https://www.instagram.com/latoo_makeup"},
+            {"id": 28, "name": "제이메이크업 (종로/광화문)", "region": "대학로·종로·성수", "category": "오디션·남성그루밍", "sub_badge": "신뢰감 1위 샵", "color": "from-blue-600 to-indigo-700", "desc": "단정하고 또렷한 인상을 완성해주는 비즈니스·오디션·프로필 전문 헤어메이크업 브랜드.", "tags": ["#신뢰감있는인상", "#정극배우", "#아나운서면접", "#새벽오픈"], "address": "서울 종로구 종로 19", "booking_url": "https://map.naver.com/p/search/제이메이크업 종로", "map_query": "제이메이크업 종로", "instagram": "https://www.instagram.com/jmakeup_official"},
+            {"id": 29, "name": "메이크업포엘 (성수/건대점)", "region": "대학로·종로·성수", "category": "프로필·스냅", "sub_badge": "성수 스냅 연계", "color": "from-amber-600 to-orange-600", "desc": "성수·건대 인근 스튜디오 프로필 및 야외 스냅 촬영과 연계된 감각적인 메이크업 샵.", "tags": ["#성수스냅촬영", "#감각적스타일링", "#스튜디오연계", "#트렌디"], "address": "서울 광진구 아차산로 229", "booking_url": "https://map.naver.com/p/search/메이크업포엘 건대", "map_query": "메이크업포엘 건대", "instagram": "https://www.instagram.com/makeup_for_l"},
+            {"id": 30, "name": "블랑엔스모키 (대학로/종로)", "region": "대학로·종로·성수", "category": "무대·뮤지컬", "sub_badge": "대학로 무대 분장 1위", "color": "from-purple-600 to-pink-600", "desc": "대학로 무대 배우 및 연극/뮤지컬 프로필, 오디션용 입체감 있는 메이크업 전문 살롱.", "tags": ["#연극뮤지컬", "#오디션프로필", "#대학로대표샵", "#무대조명최적화"], "address": "서울 종로구 대학로 120", "booking_url": "https://map.naver.com/p/search/블랑엔스모키 대학로", "map_query": "블랑엔스모키 대학로", "instagram": "https://www.instagram.com/blanc_n_smoky"}
+        ];
+
+        let currentRegion = 'all';
+        let currentCat = 'all';
+        let searchQuery = '';
+
+        const shopGrid = document.getElementById('shopGrid');
+        const shopCount = document.getElementById('shopCount');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+
+        function shareApp() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '헤메캐치 - 배우 전담 헤어&메이크업 맵',
+                    text: '배우들을 위한 서울 상위 30개 헤어·메이크업 샵 실시간 지도 & 예약',
+                    url: window.location.href,
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('링크가 복사되었습니다! 원하는 곳에 공유해보세요.');
+            }
+        }
+
+        function openNaverMap(query) {
+            const encoded = encodeURIComponent(query);
+            const webUrl = `https://map.naver.com/p/search/${encoded}`;
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                const appScheme = `nmap://search?query=${encoded}&appname=com.hemecatch.app`;
+                const start = Date.now();
+                window.location.href = appScheme;
+                setTimeout(() => {
+                    if (Date.now() - start < 1500) {
+                        window.open(webUrl, '_blank');
+                    }
+                }, 600);
+            } else {
+                window.open(webUrl, '_blank');
+            }
+        }
+
+        function renderShops() {
+            const filtered = SHOPS.filter(shop => {
+                if (currentRegion !== 'all' && shop.region !== currentRegion) return false;
+                if (currentCat !== 'all') {
+                    const inCategory = shop.category.includes(currentCat);
+                    const inTags = shop.tags.some(t => t.includes(currentCat));
+                    if (!inCategory && !inTags) return false;
+                }
+                if (searchQuery.trim() !== '') {
+                    const q = searchQuery.toLowerCase().trim();
+                    const match = shop.name.toLowerCase().includes(q) ||
+                                  shop.desc.toLowerCase().includes(q) ||
+                                  shop.region.toLowerCase().includes(q) ||
+                                  shop.tags.some(t => t.toLowerCase().includes(q));
+                    if (!match) return false;
+                }
+                return true;
+            });
+
+            shopCount.textContent = filtered.length;
+            if (filtered.length === 0) {
+                shopGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            shopGrid.innerHTML = filtered.map(shop => `
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition duration-200 space-y-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr ${shop.color} text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                            ${shop.id}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center flex-wrap gap-1.5 mb-1">
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">
+                                    ${shop.region}
+                                </span>
+                                <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-rose-50 text-rose-600 border border-rose-100">
+                                    ${shop.sub_badge}
+                                </span>
+                            </div>
+                            <h3 class="text-base font-extrabold text-slate-900 tracking-tight leading-snug truncate">
+                                ${shop.name}
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-2">
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            ${shop.desc}
+                        </p>
+                        <div class="flex flex-wrap gap-1 pt-0.5">
+                            ${shop.tags.map(t => `<span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200/70">${t}</span>`).join('')}}
+                        </div>
+                        <div class="text-[11px] text-slate-400 flex items-center gap-1.5 pt-1 border-t border-slate-200/60">
+                            <i class="fa-regular fa-compass text-slate-400 text-xs"></i>
+                            <span class="truncate">${shop.address}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 pt-1">
+                        <button 
+                            onclick="openNaverMap('${shop.map_query}')"
+                            class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition active:scale-[0.98]"
+                        >
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>네이버 지도 ↗</span>
+                        </button>
+
+                        <a 
+                            href="${shop.booking_url}" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="flex-1 py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm shadow-indigo-100 transition active:scale-[0.98]"
+                        >
+                            <i class="fa-regular fa-calendar-check"></i>
+                            <span>예약하기 ↗</span>
+                        </a>
+
+                        <a 
+                            href="${shop.instagram}" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center text-sm transition shrink-0"
+                            title="인스타그램 포트폴리오"
+                        >
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.querySelectorAll('#regionFilters .region-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#regionFilters .region-btn').forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm', 'shadow-indigo-200', 'active');
+                    b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                });
+                e.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                e.target.classList.add('bg-indigo-600', 'text-white', 'shadow-sm', 'shadow-indigo-200', 'active');
+                currentRegion = e.target.getAttribute('data-region');
+                renderShops();
+            });
+        });
+
+        document.querySelectorAll('#categoryFilters .cat-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#categoryFilters .cat-btn').forEach(b => {
+                    b.classList.remove('bg-indigo-50', 'text-indigo-700', 'border-indigo-200', 'font-bold', 'active');
+                    b.classList.add('bg-white', 'text-slate-600', 'border-slate-200', 'font-medium');
+                });
+                e.target.classList.remove('bg-white', 'text-slate-600', 'border-slate-200', 'font-medium');
+                e.target.classList.add('bg-indigo-50', 'text-indigo-700', 'border-indigo-200', 'font-bold', 'active');
+                currentCat = e.target.getAttribute('data-cat');
+                renderShops();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderShops();
+        });
+
+        renderShops();
+    </script>
+</body>value;
+            renderShops();
+        });
+
+        renderShops();
+    </script>
+</body>
+</html>
